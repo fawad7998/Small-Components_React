@@ -14,11 +14,9 @@ const LetterTracer = ({ letter = "A", width = 300, height = 400 }) => {
         setStrokeCount(0);
     };
 
-    // Check completion based on strokes and length of drawing
+    // Check the completion based on strokes
     const checkCompletion = () => {
-        const data = canvasRef.current.getSaveData();
-        const lines = data ? JSON.parse(data).lines : [];
-        if (lines.length > 10) { // Adjust this threshold as needed
+        if (canvasRef.current.getSaveData().lines.length > 10) {
             setIsComplete(true);
         }
     };
@@ -31,10 +29,8 @@ const LetterTracer = ({ letter = "A", width = 300, height = 400 }) => {
     }, [isComplete, strokeCount]);
 
     const handleDraw = () => {
-        if (!isComplete) {
-            setStrokeCount(canvasRef.current.getSaveData().lines.length);
-            checkCompletion();
-        }
+        setStrokeCount(canvasRef.current.getSaveData().lines.length);
+        checkCompletion();
     };
 
     return (
@@ -56,8 +52,6 @@ const LetterTracer = ({ letter = "A", width = 300, height = 400 }) => {
                     canvasWidth={width}
                     canvasHeight={height}
                     hideInterface={true}
-                    immediateLoading={false} // Prevents auto-draw
-                    disabled={isComplete} // Disable drawing after completion
                 />
             </div>
             <button
