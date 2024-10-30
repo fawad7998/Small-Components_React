@@ -9,6 +9,8 @@ function Home() {
                 <Button link="/image" name="Image Galary" />
                 <Button link="/Drag" name="Drag & Drop" />
                 <Button link="/Movie" name="Movie Search" />
+                <Button link="/extra" name="Extra" />
+                <Button link="/canvas" name="Canvas" />
             </div>
 
         </>
